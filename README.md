@@ -1,38 +1,34 @@
-# UYG332 - Image Processing Final Project
+# Image enhancement with OpenCV
 
-Name Al-harath Ahmed Handhal  
-**Student ID:** B2280.060002  
-**Course:** UYG332 - Image Processing  
-**Instructor:** Lect. Batuhan Hangün
+What changes when you sharpen an image in the frequency domain, or equalize its contrast one region at a time? This Python notebook compares the outputs side by side. It includes pixel measurements, histograms and saved figures from six experiments completed for UYG332 Image Processing at Istanbul Aydın University.
 
----
+[Open the notebook with the original results](UYG332Image_Processing_Final_Project.ipynb)
 
-## 📁 Project Description
+![The same synthetic circuit pattern with impulse noise, then box, Gaussian and median filtering](docs/filter-comparison.png)
 
-This project includes solutions for all 6 problems assigned in the final project of UYG332 - Image Processing.  
-It demonstrates image enhancement, noise removal, filtering, and transformation techniques.  
-Each problem includes:
-- Code
-- Step-by-step Markdown explanations
-- Image results
-- Visual/statistical justification
+The preview uses the reproducible demo input. The thin tracks remain visible after median filtering, while the box and Gaussian filters spread isolated bright pixels into nearby samples.
 
+| Experiment | What to look for |
+| --- | --- |
+| Color and pixels | Read an image in BGR, convert it to RGB for display, draw a patch and measure its center pixel. |
+| Grayscale negative | Compare five sampled intensities before and after the transformation (255 - I). |
+| Nonlinear intensity transforms | Compare logarithmic and exponential mappings after normalization. |
+| Sharpening | Compare spatial unsharp masking with an FFT high-pass approach at three sharpening strengths. |
+| Noise removal | Inspect the histogram and compare box, Gaussian and median filters on impulse noise. |
+| Low contrast | Compare global histogram equalization with contrast-limited adaptive histogram equalization (CLAHE). |
 
-## 📂 Files
+## Run it locally
 
-- `UYG332Image_Processing_Final_Project.ipynb`  
- ↪ Contains all 6 problems solved in order, with full explanations, code, and results.
+The original figures are saved in the notebook. To run the code on another machine, generate six small synthetic images in a new directory. Their filenames match the code. The new notebook starts with empty outputs so its figures come from the synthetic images.
 
----
+From the repository root, in an active Python virtual environment, run
 
-## 🧪 Required Libraries
-
-```bash
-pip install opencv-python matplotlib numpy
+```sh
+python -m pip install opencv-python-headless numpy matplotlib jupyterlab
+python prepare_demo.py
+python -m jupyterlab demo/UYG332Image_Processing_Final_Project.ipynb
 ```
 
-## 📝 How to Run
+Select **Run → Run All Cells**. Five pixel coordinates in the negative-image experiment are sampled randomly. To reproduce the coursework figures with your own copy of the original course inputs, place those six files beside the original notebook.
 
-Open the notebook using Jupyter Notebook or VS Code  
-Run all cells step by step  
-Observe the results and explanations shown under each problem
+Author · Al-Harath Ahmed Handhal
